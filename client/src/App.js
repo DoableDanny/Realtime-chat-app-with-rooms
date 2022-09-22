@@ -4,12 +4,17 @@ import Home from './pages/home';
 import Chat from './pages/chat';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import io from 'socket.io-client';
+import { useEffect } from 'react';
 
 const socket = io.connect('http://localhost:4000');
 
 function App() {
   const [username, setUsername] = useState('');
   const [room, setRoom] = useState('');
+
+  useEffect(() => {
+    document.title = 'Chat App';
+  });
 
   return (
     <Router>
@@ -27,7 +32,7 @@ function App() {
               />
             }
           />
-          {/* Add this */}
+
           <Route
             path='/chat'
             element={<Chat username={username} room={room} socket={socket} />}
