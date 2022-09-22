@@ -29,7 +29,7 @@ const Home = ({ username, setUsername, room, setRoom, socket }) => {
           <option>-- Select Room --</option>
           <option value='centurion'>Centurion</option>
           <option value='orion'>Orion</option>
-          <option value='deutron'>Deutron</option>
+          <option value='deutron'>Deuteron</option>
           <option value='galacticon'>Galacticon</option>
         </select>
 
