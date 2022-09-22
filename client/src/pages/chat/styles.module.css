@@ -24,7 +24,7 @@
   list-style-type: none;
   padding-left: 0;
   margin-bottom: 60px;
-  color: rgb(153, 217, 234);
+  color: rgb(248, 161, 69);
 }
 .usersList li {
   margin-bottom: 12px;
@@ -37,14 +37,14 @@
   padding: 10px 10px 10px 40px;
 }
 .message {
-  background: rgb(0, 24, 111);
+  background: rgb(240, 121, 0);
   border-radius: 6px;
   margin-bottom: 24px;
   max-width: 600px;
   padding: 12px;
 }
 .msgMeta {
-  color: rgb(153, 217, 234);
+  color: rgb(248, 161, 69);
   font-size: 0.75rem;
 }
 .msgText {
@@ -60,6 +60,6 @@
   margin-right: 16px;
   width: 60%;
   border-radius: 6px;
-  border: 1px solid rgb(153, 217, 234);
+  border: 1px solid rgb(248, 161, 69);
   font-size: 0.9rem;
 }

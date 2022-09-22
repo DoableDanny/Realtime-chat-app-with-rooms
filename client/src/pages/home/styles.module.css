@@ -4,13 +4,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgb(63, 73, 204);
+  background: rgb(248, 161, 69);
 }
 .formContainer {
   width: 400px;
   margin: 0 auto 0 auto;
   padding: 32px;
-  background: lightblue;
+  background: rgb(240, 121, 0);
   border-radius: 6px;
   display: flex;
   flex-direction: column;
@@ -21,7 +21,7 @@
   width: 100%;
   padding: 12px;
   border-radius: 6px;
-  border: 1px solid rgb(63, 73, 204);
+  border: 1px solid rgb(21, 21, 21);
   font-size: 0.9rem;
 }
 .input option {
