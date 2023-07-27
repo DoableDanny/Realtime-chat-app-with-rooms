@@ -4,13 +4,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgb(63, 73, 204);
+  background-image: url(/public/flowa.gif);
+  background-repeat: no-repeat;
+  background-size:cover;
+  background-attachment: fixed;
+  background-position: center;
 }
 .formContainer {
   width: 400px;
   margin: 0 auto 0 auto;
   padding: 32px;
-  background: lightblue;
+  background: rgb(249, 231, 168);
   border-radius: 6px;
   display: flex;
   flex-direction: column;
@@ -21,7 +25,7 @@
   width: 100%;
   padding: 12px;
   border-radius: 6px;
-  border: 1px solid rgb(63, 73, 204);
+  border: 1px solid rgb(255, 199, 68);
   font-size: 0.9rem;
 }
 .input option {

@@ -8,7 +8,7 @@
 
 /* Room and users component */
 .roomAndUsersColumn {
-  border-right: 1px solid #dfdfdf;
+  border-right: 1px solid #ffffff;
 }
 .roomTitle {
   margin-bottom: 60px;
@@ -24,7 +24,7 @@
   list-style-type: none;
   padding-left: 0;
   margin-bottom: 60px;
-  color: rgb(153, 217, 234);
+  color: rgb(234, 153, 227);
 }
 .usersList li {
   margin-bottom: 12px;
@@ -37,18 +37,18 @@
   padding: 10px 10px 10px 40px;
 }
 .message {
-  background: rgb(0, 24, 111);
+  background: rgb(243, 130, 239);
   border-radius: 6px;
   margin-bottom: 24px;
   max-width: 600px;
   padding: 12px;
 }
 .msgMeta {
-  color: rgb(153, 217, 234);
+  color: rgb(234, 153, 206);
   font-size: 0.75rem;
 }
 .msgText {
-  color: #fff;
+  color: #ffffff;
 }
 
 /* Message input and button */
@@ -60,6 +60,6 @@
   margin-right: 16px;
   width: 60%;
   border-radius: 6px;
-  border: 1px solid rgb(153, 217, 234);
+  border: 1px solid rgb(230, 124, 224);
   font-size: 0.9rem;
 }

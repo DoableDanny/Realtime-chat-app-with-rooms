@@ -1,13 +1,13 @@
-let axios = require('axios');
+let axios = require('axios')
 
 function harperSaveMessage(message, username, room) {
-  const dbUrl = process.env.HARPERDB_URL;
-  const dbPw = process.env.HARPERDB_PW;
-  if (!dbUrl || !dbPw) return null;
+  const dbUrl = process.env.HARPERDB_URL
+  const dbPw = process.env.HARPERDB_PW
+  if (!dbUrl || !dbPw) return null
 
   let data = JSON.stringify({
     operation: 'insert',
-    schema: 'realtime_chat_app',
+    schema: 'sparkles',
     table: 'messages',
     records: [
       {
@@ -16,7 +16,7 @@ function harperSaveMessage(message, username, room) {
         room,
       },
     ],
-  });
+  })
 
   let config = {
     method: 'post',
@@ -26,17 +26,17 @@ function harperSaveMessage(message, username, room) {
       Authorization: dbPw,
     },
     data: data,
-  };
+  }
 
   return new Promise((resolve, reject) => {
     axios(config)
       .then(function (response) {
-        resolve(JSON.stringify(response.data));
+        resolve(JSON.stringify(response.data))
       })
       .catch(function (error) {
-        reject(error);
-      });
-  });
+        reject(error)
+      })
+  })
 }
 
-module.exports = harperSaveMessage;
+module.exports = harperSaveMessage
