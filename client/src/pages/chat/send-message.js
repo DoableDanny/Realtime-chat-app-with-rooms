@@ -1,5 +1,6 @@
 import styles from './styles.module.css'
 import React, { useState } from 'react'
+import ImageUploader from './imageUploader'
 
 const SendMessage = ({ socket, username, room }) => {
   const [message, setMessage] = useState('')
@@ -31,6 +32,7 @@ const SendMessage = ({ socket, username, room }) => {
       <button className="btn btn-primary" onClick={sendMessage}>
         Send Message
       </button>
+      <ImageUploader />
     </div>
   )
 }
