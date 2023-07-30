@@ -1,32 +1,40 @@
-import styles from './styles.module.css';
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import styles from './styles.module.css'
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-const RoomAndUsers = ({ socket, username, room }) => {
-  const [roomUsers, setRoomUsers] = useState([]);
+const RoomAndUsers = ({ socket, username, room, backgroundColor }) => {
+  const [roomUsers, setRoomUsers] = useState([])
+  const [color, setColor] = useState('white')
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+  const handleColorChange = (event) => {
+    setColor(event.target.value)
+  }
 
   useEffect(() => {
     socket.on('chatroom_users', (data) => {
-      console.log(data);
-      setRoomUsers(data);
-    });
+      console.log(data)
+      setRoomUsers(data)
+    })
 
-    return () => socket.off('chatroom_users');
-  }, [socket]);
+    return () => socket.off('chatroom_users')
+  }, [socket])
 
   const leaveRoom = () => {
-    const __createdtime__ = Date.now();
-    socket.emit('leave_room', { username, room, __createdtime__ });
+    const __createdtime__ = Date.now()
+    socket.emit('leave_room', { username, room, __createdtime__ })
     // Redirect to home page
-    navigate('/', { replace: true });
-  };
+    navigate('/', { replace: true })
+  }
 
   return (
-    <div className={styles.roomAndUsersColumn}>
+    <div
+      className={styles.roomAndUsersColumn}
+      style={{ backgroundColor: color }}
+    >
       <h2 className={styles.roomTitle}>{room}</h2>
-
+      <input type="color" onChange={handleColorChange} />
+      <br></br>
       <div>
         {roomUsers.length > 0 && <h5 className={styles.usersTitle}>Users:</h5>}
         <ul className={styles.usersList}>
@@ -43,11 +51,11 @@ const RoomAndUsers = ({ socket, username, room }) => {
         </ul>
       </div>
 
-      <button className='btn btn-outline' onClick={leaveRoom}>
+      <button className="btn btn-outline" onClick={leaveRoom}>
         Leave
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default RoomAndUsers;
+export default RoomAndUsers
