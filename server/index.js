@@ -1,14 +1,20 @@
-require('dotenv').config()
-const express = require('express')
-const app = express()
-const http = require('http')
-const cors = require('cors')
-const { Server } = require('socket.io')
-const harperSaveMessage = require('./services/harper-save-message')
-const harperGetMessages = require('./services/harper-get-messages')
-const leaveRoom = require('./utils/leave-room') // Add this
+import('dotenv').config()
+import express from 'express'
+const app = express
+import http from 'http'
+import cors from 'cors'
+import expressServer from './server.js'
+import { Server } from 'socket.io'
+import harperSaveMessage from './services/harper-save-message.js'
+import harperGetMessages from './services/harper-get-messages.js'
+import leaveRoom from './utils/leave-room.js' // Add this
 
 app.use(cors()) // Add cors middleware
+
+const port = process.env.PORT || 3000
+expressServer.listen(port, () => {
+  console.log(`Server listening on port ${port}`)
+})
 
 const server = http.createServer(app) // Add this
 

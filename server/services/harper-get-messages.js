@@ -31,4 +31,4 @@ function harperGetMessages(room) {
   })
 }
 
-module.exports = harperGetMessages
+export default harperGetMessages

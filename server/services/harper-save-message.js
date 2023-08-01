@@ -39,4 +39,4 @@ function harperSaveMessage(message, username, room) {
   })
 }
 
-module.exports = harperSaveMessage
+export default harperSaveMessage
