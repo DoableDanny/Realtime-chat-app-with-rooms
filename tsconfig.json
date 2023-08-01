@@ -1,0 +1,24 @@
+{
+  "include": ["server/**/*", "client/**/*"],
+  "ts-node": { "transpileOnly": true },
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig to read more about this file */
+    /* Projects */
+    /* Language and Environment */
+    "target": "es2016" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+    "jsx": "react-jsx" /* Specify what JSX code is generated. */,
+   
+    /* Modules */
+    "module": "commonjs" /* Specify what module code is generated. */,
+
+    /* Interop Constraints */
+    "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
+    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
+    "allowJs": true,
+
+    /* Type Checking */
+    "strict": false /* Enable all strict
+    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */,
+    "noEmit": true
+  }
+}

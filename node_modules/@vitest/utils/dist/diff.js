@@ -1,0 +1,118 @@
+import { b as getColors } from './chunk-colors.js';
+import * as concordance from 'concordance';
+
+const concordanceModule = "default" in concordance ? concordance.default : concordance;
+function getConcordanceTheme() {
+  const c = getColors();
+  return {
+    boolean: c.yellow,
+    circular: c.gray("[Circular]"),
+    date: {
+      invalid: c.red("invalid"),
+      value: c.blue
+    },
+    diffGutters: {
+      actual: `  ${c.green("-")} `,
+      expected: `  ${c.red("+")} `,
+      padding: "    "
+    },
+    error: {
+      ctor: { open: `${c.gray.open}(`, close: `)${c.gray.close}` },
+      name: c.magenta
+    },
+    function: {
+      name: c.blue,
+      stringTag: c.magenta
+    },
+    global: c.magenta,
+    item: { after: c.gray(",") },
+    list: { openBracket: c.gray("["), closeBracket: c.gray("]") },
+    mapEntry: { after: c.gray(",") },
+    maxDepth: c.gray("\u2026"),
+    null: c.yellow,
+    number: c.yellow,
+    object: {
+      openBracket: c.gray("{"),
+      closeBracket: c.gray("}"),
+      ctor: c.magenta,
+      stringTag: { open: `${c.magenta.open}@`, close: c.magenta.close },
+      secondaryStringTag: { open: `${c.gray.open}@`, close: c.gray.close }
+    },
+    property: {
+      after: c.gray(","),
+      keyBracket: { open: c.gray("["), close: c.gray("]") },
+      valueFallback: c.gray("\u2026")
+    },
+    regexp: {
+      source: { open: `${c.blue.open}/`, close: `/${c.blue.close}` },
+      flags: c.yellow
+    },
+    stats: { separator: c.gray("---") },
+    string: {
+      open: c.blue.open,
+      close: c.blue.close,
+      line: { open: c.blue("'"), close: c.blue("'") },
+      multiline: { start: c.blue("`"), end: c.blue("`") },
+      controlPicture: c.gray,
+      diff: {
+        insert: {
+          open: c.bgGreen.open + c.black.open,
+          close: c.black.close + c.bgGreen.close
+        },
+        delete: {
+          open: c.bgRed.open + c.black.open,
+          close: c.black.close + c.bgRed.close
+        },
+        equal: c.blue,
+        insertLine: {
+          open: c.green.open,
+          close: c.green.close
+        },
+        deleteLine: {
+          open: c.red.open,
+          close: c.red.close
+        }
+      }
+    },
+    symbol: c.yellow,
+    typedArray: {
+      bytes: c.yellow
+    },
+    undefined: c.yellow
+  };
+}
+function diffDescriptors(actual, expected, options) {
+  return concordanceModule.diff(expected, actual, options);
+}
+
+function unifiedDiff(actual, expected, options = {}) {
+  const theme = getConcordanceTheme();
+  const diff = diffDescriptors(actual, expected, { theme });
+  const { showLegend = true } = options;
+  const counts = {
+    "+": 0,
+    "-": 0
+  };
+  const c = getColors();
+  const plus = theme.diffGutters.actual;
+  const minus = `  ${c.green("+")}`;
+  const lines = diff.split(/\r?\n/g);
+  lines.forEach((line) => {
+    if (line.startsWith(plus))
+      counts["+"]++;
+    else if (line.startsWith(minus))
+      counts["-"]++;
+  });
+  if (counts["+"] === 0 && counts["-"] === 0)
+    return "";
+  let legend = "";
+  if (showLegend) {
+    legend = `  ${c.green(`- Expected  - ${counts["-"]}`)}
+  ${c.red(`+ Received  + ${counts["+"]}`)}
+
+`;
+  }
+  return legend + diff.replace(/␊\s*$/mg, "");
+}
+
+export { unifiedDiff };

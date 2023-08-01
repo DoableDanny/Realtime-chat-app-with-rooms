@@ -1,11 +1,15 @@
 import styles from './styles.module.css'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import AddPanelImage from './apis/addImage'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-const RoomAndUsers = ({ socket, username, room, backgroundColor }) => {
+const RoomAndUsers = ({ socket, username, room }) => {
   const [roomUsers, setRoomUsers] = useState([])
   const [color, setColor] = useState('white')
   const [image, setImage] = useState(null)
+
+  const queryClient = useQueryClient()
 
   const navigate = useNavigate()
   const handleColorChange = (event) => {
@@ -17,6 +21,10 @@ const RoomAndUsers = ({ socket, username, room, backgroundColor }) => {
       const reader = new FileReader()
       reader.onload = (e) => {
         setImage(e.target.result)
+
+        const panelImage = e.target.result
+        event.preventDefault()
+        AddPanelImage.mutate(panelImage)
       }
       reader.readAsDataURL(event.target.files[0])
     }
