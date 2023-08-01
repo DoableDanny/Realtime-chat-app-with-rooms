@@ -1,21 +1,21 @@
-import('dotenv').config()
-import express from 'express'
-const app = express
-import http from 'http'
-import cors from 'cors'
-import expressServer from './server.js'
-import { Server } from 'socket.io'
-import harperSaveMessage from './services/harper-save-message.js'
-import harperGetMessages from './services/harper-get-messages.js'
-import leaveRoom from './utils/leave-room.js' // Add this
+import 'dotenv/config';
+import express from 'express';
+import http from 'http';
+import cors from 'cors';
+import { Server } from 'socket.io';
+import harperSaveMessage from './services/harper-save-message.js';
+import harperGetMessages from './services/harper-get-messages.js';
+import leaveRoom from './utils/leave-room.js';
 
-app.use(cors()) // Add cors middleware
+const app = express(); // Invoke the express function to create the app
 
-const port = process.env.PORT || 3000
-expressServer.listen(port, () => {
-  console.log(`Server listening on port ${port}`)
-})
+const port = process.env.PORT || 3000;
 
+app.use(cors()); // Add cors middleware
+
+
+// Socket.IO Server
+const httpServer = http.createServer(app); // Create a new HTTP server for Socket.IO
 const server = http.createServer(app) // Add this
 
 // Create an io server and allow for CORS from http://localhost:3000 with GET and POST methods
@@ -112,4 +112,7 @@ io.on('connection', (socket) => {
   })
 })
 
-server.listen(4000, () => 'Server is running on port 4000')
+// Replace "server.listen()" with "httpServer.listen()"
+httpServer.listen(4000, () => {
+  console.log('Socket.IO Server is running on port 4000');
+});

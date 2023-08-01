@@ -1,4 +1,4 @@
-let axios = require('axios')
+import axios from 'axios'
 
 function harperGetMessages(room) {
   const dbUrl = process.env.HARPERDB_URL

@@ -1,5 +1,5 @@
 
-import connection from './connection.js'
+import connection from './knexConnection.js'
 
 export async function getUsers(db = connection) {
   return await db('users').select('*')
