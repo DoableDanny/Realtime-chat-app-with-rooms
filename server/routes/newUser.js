@@ -30,28 +30,6 @@ newUserRouter.post('/addUser', async (req, res) => {
   }
 });
 
-newUserRouter.get('/', async (req, res) => {
-  try {
-    return 'hi'
-  } catch (error) {
-    console.error('Error getting hi', error);
-    res.status(500).json({ error: 'error getting hi' });
-  }
-});
-
-newUserRouter.get('/:username', async (req, res) => {
-  try {
-    const { username } = req.params; // Make sure 'username' is properly extracted from the request parameters
-    const messages = await getMsgs(username);
-    console.log(`fetched messages by username (${username}):`, messages);
-    res.json({ messages });
-  } catch (error) {
-    console.error('Error getting messages by username:', error);
-    res.status(500).json({ error: 'Backend error getting messages' });
-  }
-});
-
-
 newUserRouter.get('/signature', (req, res) => {
   const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
   const apiKey = process.env.CLOUDINARY_API_KEY;
@@ -73,5 +51,29 @@ newUserRouter.get('/signature', (req, res) => {
     apiKey,
   });
 });
+
+newUserRouter.get('/home', async (req, res) => {
+  try {
+    res.send('hi')
+  } catch (error) {
+    console.error('Error getting hi', error);
+    res.status(500).json({ error: 'error getting hi' });
+  }
+});
+
+newUserRouter.get('/:username', async (req, res) => {
+  try {
+    const { username } = req.params; // Make sure 'username' is properly extracted from the request parameters
+    const messages = await getMsgs(username);
+    console.log(`fetched messages by username (${username}):`, messages);
+    res.json({ messages });
+  } catch (error) {
+    console.error('Error getting messages by username:', error);
+    res.status(500).json({ error: 'Backend error getting messages' });
+  }
+});
+
+
+
 
 export default newUserRouter;
