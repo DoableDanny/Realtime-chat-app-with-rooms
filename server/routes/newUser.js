@@ -1,22 +1,17 @@
 import 'dotenv/config';
 import { v2 as cloudinary } from 'cloudinary';
-import express from 'express';
 import { addUser, getUsers } from '../db/newUser.js';
 import { getMsgs } from '../db/msgs.js';
 import { Router } from 'express';
+import express from 'express'
 
-const newUserRouter = Router();
+const newUserRouter = express.Router();
 
-// Define your middleware logic here
-newUserRouter.use((req, res, next) => {
-
-  next(); 
-});
 
 // Define your routes directly on the newUserRouter
 
 
-newUserRouter.post('/', async (req, res) => {
+newUserRouter.post('/addUser', async (req, res) => {
   try {
     if (!req.body) {
       res.status(400).send('Bad request/server side Route');
@@ -32,6 +27,15 @@ newUserRouter.post('/', async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(500).send('error adding user');
+  }
+});
+
+newUserRouter.get('/', async (req, res) => {
+  try {
+    return 'hi'
+  } catch (error) {
+    console.error('Error getting hi', error);
+    res.status(500).json({ error: 'error getting hi' });
   }
 });
 

@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Realtime customizable chat",
   "main": "server/index.js",
-  "type": "module",
+  
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "concurrently \"node index.js\" \"node server.cjs\"",
+    "dev": "nodemon --exec ts-node index.js",
+    "start": "concurrently \"ts-node index.js\" \"ts-node server.cjs\"",
     "test": "vitest",
     "knex": "knex --knexfile ./db/knexfile.js",
     "format": "prettier -w '**/*.{js,jsx,ts,tsx}'"
@@ -23,6 +23,7 @@
     "socket.io": "^4.5.1"
   },
   "devDependencies": {
+    "@types/node": "^20.4.6",
     "concurrently": "^8.2.0",
     "esm": "^3.2.25",
     "nodemon": "^2.0.19",
