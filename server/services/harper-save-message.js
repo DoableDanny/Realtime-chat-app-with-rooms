@@ -1,4 +1,4 @@
-import axios from 'axios'
+const axios = require('axios')
 
 function harperSaveMessage(message, username, room) {
   const dbUrl = process.env.HARPERDB_URL
@@ -39,4 +39,4 @@ function harperSaveMessage(message, username, room) {
   })
 }
 
-export default harperSaveMessage
+module.exports = harperSaveMessage

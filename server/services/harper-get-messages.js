@@ -1,4 +1,4 @@
-import axios from 'axios'
+const axios = require('axios')
 
 function harperGetMessages(room) {
   const dbUrl = process.env.HARPERDB_URL
@@ -31,4 +31,4 @@ function harperGetMessages(room) {
   })
 }
 
-export default harperGetMessages
+module.exports = harperGetMessages

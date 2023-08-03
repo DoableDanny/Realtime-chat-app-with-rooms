@@ -4,8 +4,8 @@
   "description": "Realtime customizable chat",
   "main": "server/index.js",
   "scripts": {
-    "dev": "nodemon --exec ts-node index.js",
-    "start": "concurrently \"ts-node index.js\" \"ts-node server.cjs\"",
+    "dev": "nodemon --exec  index.js",
+    "start": "concurrently \"node index.js\" \"ts-node server.cjs\"",
     "test": "vitest",
     "knex": "knex --knexfile ./db/knexfile.js",
     "format": "prettier -w '**/*.{js,jsx,ts,tsx}'"
