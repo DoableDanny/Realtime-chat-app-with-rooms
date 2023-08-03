@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Realtime customizable chat",
   "main": "server/index.js",
-  
   "scripts": {
     "dev": "nodemon --exec ts-node index.js",
     "start": "concurrently \"ts-node index.js\" \"ts-node server.cjs\"",
@@ -20,6 +19,7 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "knex": "^2.5.1",
+    "multer": "^1.4.5-lts.1",
     "socket.io": "^4.5.1"
   },
   "devDependencies": {
