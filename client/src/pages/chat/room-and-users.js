@@ -1,7 +1,6 @@
 import styles from './styles.module.css'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import AddPanelImage from './apis/addImage'
 import addPanelImage from './apis/addImage'
 //import { useMutation, useQueryClient } from '@tanstack/react-query'
 

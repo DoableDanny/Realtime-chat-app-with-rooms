@@ -57,7 +57,7 @@ const Messages = ({ socket }) => {
     return date.toLocaleString();
   }
 
- 
+
 
   return (
     <div className={styles.messagesColumn} ref={messagesColumnRef}>
