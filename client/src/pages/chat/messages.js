@@ -3,8 +3,10 @@ import { useState, useEffect, useRef } from 'react';
 
 const Messages = ({ socket }) => {
   const [messagesRecieved, setMessagesReceived] = useState([]);
-
+  //const [fileInput, setFileInput] = useState(null)
+  const [newMessage, setNewMessage] = useState('')
   const messagesColumnRef = useRef(null);
+
 
   // Runs whenever a socket event is recieved from the server
   useEffect(() => {
@@ -54,6 +56,8 @@ const Messages = ({ socket }) => {
     const date = new Date(timestamp);
     return date.toLocaleString();
   }
+
+ 
 
   return (
     <div className={styles.messagesColumn} ref={messagesColumnRef}>

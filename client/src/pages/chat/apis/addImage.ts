@@ -1,18 +1,24 @@
-import axios from 'axios'
+const imgUrl = 'http//:localhost/3000/api/v1/users/upload'
 
-const imgUrl = 'http://localhost:4000'
 
-interface PanelImage {
-  url: string
-}
 
-export async function addPanelImage(panelImage: PanelImage) {
+export default async function addPanelImage(file: any) {
+  const formData = new FormData()
+  formData.append('image', file)
+
   try {
-    const response = await axios.post(imgUrl, panelImage)
-    console.log(response.data)
-    return response.data
+    const response = await fetch(imgUrl, {
+      method: 'POST',
+      body: formData
+    })
+
+    if (response.ok) {
+      console.log('img uploaded')
+    }else {
+      console.log('upload failed')
+    }
+    
   } catch (error) {
-    console.error(error)
-    throw error
+    console.error('error uploading image', error)
   }
 }

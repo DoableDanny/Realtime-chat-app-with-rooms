@@ -2,18 +2,24 @@ import styles from './styles.module.css'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import AddPanelImage from './apis/addImage'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import addPanelImage from './apis/addImage'
+//import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 const RoomAndUsers = ({ socket, username, room }) => {
+  //const queryClient = useQueryClient()
   const [roomUsers, setRoomUsers] = useState([])
   const [color, setColor] = useState('white')
   const [image, setImage] = useState(null)
-
-  const queryClient = useQueryClient()
-
   const navigate = useNavigate()
   const handleColorChange = (event) => {
     setColor(event.target.value)
+  }
+
+  function handleFileUpload(event) {
+    const file = event.target.files[0]
+    if(file) {
+      addPanelImage(file)
+    }
   }
 
   const handleImageChange = (event) => {
@@ -22,12 +28,17 @@ const RoomAndUsers = ({ socket, username, room }) => {
       reader.onload = (e) => {
         setImage(e.target.result)
 
-        const panelImage = e.target.result
+        
         event.preventDefault()
-        AddPanelImage.mutate(panelImage)
+       
       }
       reader.readAsDataURL(event.target.files[0])
     }
+  }
+
+  function handleCombinedChange(event) {
+    handleImageChange(event);
+    handleFileUpload(event);
   }
 
   useEffect(() => {
@@ -65,7 +76,7 @@ const RoomAndUsers = ({ socket, username, room }) => {
         <h2 className={styles.roomTitle}>{room}</h2>
         <input type="color" onChange={handleColorChange} />
         <br></br>
-        <input type="file" onChange={handleImageChange} />
+        <input type="file" onChange={handleCombinedChange} />
         <div>
           {roomUsers.length > 0 && (
             <h5 className={styles.usersTitle}>Users:</h5>

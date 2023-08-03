@@ -1,6 +1,7 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import Cookies from 'js-cookie'
+/*import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import jwtDecode from 'jwt-decode'
+
+
 
 type AuthState = {
   user: {
@@ -41,3 +42,5 @@ export const authSlice = createSlice({
 export const { setUser, logOut } = authSlice.actions
 
 export default authSlice.reducer
+*/
+export {}
